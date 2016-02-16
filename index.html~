@@ -35,7 +35,7 @@ path.chord {
 
 var width = 700,
     height = 700,
-    outerRadius = Math.min(width, height) / 2 - 125,
+    outerRadius = Math.min(width, height) / 2 - 100,
     innerRadius = outerRadius - 20;
 
 var formatPercent = d3.format(".1%");
