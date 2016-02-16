@@ -27,16 +27,16 @@ path.chord {
 
 </style>
 
-<h1>SONA 2016</h1>
+<h1></h1>
 
 <script src="pym.js" charset="utf-8"></script>
 <script src="d3.v3.min.js" charset="utf-8"></script>
 <script src="queue.v1.min.js"></script>
 <script>
 
-var width = 650,
-    height = 650,
-    outerRadius = Math.min(width, height) / 2 - 100,
+var width = 700,
+    height = 700,
+    outerRadius = Math.min(width, height) / 2 - 125,
     innerRadius = outerRadius - 20;
 
 var formatPercent = d3.format(".1%");
@@ -92,7 +92,7 @@ function ready(error, twitter, matrix) {
 
   // Add a mouseover title.
   group.append("title").text(function(d, i) {
-    return twitter[i].name + ": " + formatPercent(d.value) + " of origins";
+    return twitter[i].name;
   });
 
   // Add the group arc.
@@ -135,11 +135,7 @@ group.append("text")
   // Add an elaborate mouseover title for each chord.
   chord.append("title").text(function(d) {
     return twitter[d.source.index].name
-        + " → " + twitter[d.target.index].name
-        + ": " + formatPercent(d.source.value)
-        + "\n" + twitter[d.target.index].name
-        + " → " + twitter[d.source.index].name
-        + ": " + formatPercent(d.target.value);
+        + " → " + twitter[d.target.index].name;
   });
 
   function mouseover(d, i) {
