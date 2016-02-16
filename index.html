@@ -63,10 +63,19 @@ var svg = d3.select("body").append("svg")
 svg.append("circle")
     .attr("r", outerRadius);
 
-queue()
-    .defer(d3.csv, "twitter.csv")
-    .defer(d3.json, "matrix.json")
-    .await(ready);
+
+      function drawGraphic(width) {
+          bP.draw(data, svg);
+      }
+
+      var pymChild = new pym.Child({ renderCallback: renderCallback });
+
+function renderCallback() {
+    queue()
+        .defer(d3.csv, "twitter.csv")
+        .defer(d3.json, "matrix.json")
+        .await(ready);
+}
 
 function ready(error, twitter, matrix) {
   if (error) throw error;
