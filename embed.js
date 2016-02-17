@@ -5,4 +5,4 @@ if (document.location.hostname == "localhost") {
 }
 
 document.write('<script type="text/javascript" src="' + baseurl + 'pym.js"></script>')
-document.write(" <script>var pymParent = new pym.Parent('slopeEmbed', '" + baseurl + "index.html', {});</script>")
+document.write(" <script>var pymParent = new pym.Parent('tweetCircle', '" + baseurl + "index.html', {});</script>")
