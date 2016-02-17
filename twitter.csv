@@ -1,41 +1,41 @@
-name,color
-eNCA - @enca,#a6cee3
-EWN Reporter - @ewnreporter,#1f78b4
-DA - @our_da,#b2df8a
-Debora Patta - @debora_patta,#33a02c
-EFF - @econfreedomza,#fb9a99
-Mmusi Maimane - @mmusimaimane,#e31a1c
-Maps Maponyane - @mapsmaponyane,#fdbf6f
-Siv Ngesi - @iamsivn,#ff7f00
-ANN7 - @ann7tv,#cab2d6
-Julius Malema - @julius_s_malema,#6a3d9a
-IOL News - @iol,#a6cee3
-@barry_roux,#1f78b4
-Nando's - @nandossa,#b2df8a
-The Presidency - @presidencyza,#33a02c
-News24 - @news24,#fb9a99
-Times LIVE - @timeslive,#e31a1c
-Chester Missing - @chestermissing,#fdbf6f
-Sizwe Dhlomo - @sizwedhlomo,#ff7f00
-Parliament - @parliamentofrsa,#cab2d6
-Dianne Hawker - @diannehawker,#6a3d9a
-Economy,#a6cee3
-Education,#1f78b4
-Finance,#b2df8a
-Jobs,#33a02c
-Land,#fb9a99
-Honourable Speaker,#e31a1c
-Mandela,#fdbf6f
-Nkandla,#ff7f00
-ANC,#cab2d6
-Cope,#6a3d9a
-DA,#a6cee3
-EFF,#1f78b4
-Point of Order,#b2df8a
-Police,#33a02c
-Racism,#fb9a99
-Rand,#e31a1c
-Resign,#fdbf6f
-SABC,#ff7f00
-ZumaMustFall,#cab2d6
-Zupta,#6a3d9a
+name,color,
+eNCA - @enca,#7a2280,journo
+EWN Reporter - @ewnreporter,#7a2280,journo
+DA - @our_da,#3eb1cc,DA
+Debora Patta - @debora_patta,#7a2280,journo
+EFF - @econfreedomza,#990002,EFF
+Mmusi Maimane - @mmusimaimane,#3eb1cc,DA
+Maps Maponyane - @mapsmaponyane,#4c1d52,celeb
+Siv Ngesi - @iamsivn,#4c1d52,celeb
+ANN7 - @ann7tv,#7a2280,journo
+Julius Malema - @julius_s_malema,#990002,EFF
+IOL News - @iol,#7a2280,journo
+@barry_roux,#4c1d52,celeb
+Nando's - @nandossa,#4c1d52,celeb
+The Presidency - @presidencyza,#79d738,government
+News24 - @news24,#7a2280,journo
+Times LIVE - @timeslive,#7a2280,journo
+Chester Missing - @chestermissing,#4c1d52,celeb
+Sizwe Dhlomo - @sizwedhlomo,#4c1d52,celeb
+Parliament - @parliamentofrsa,#79d738,government
+Dianne Hawker - @diannehawker,#7a2280,journo
+Economy,#ec008c,issues
+Education,#ec008c,issues
+Finance,#ec008c,issues
+Jobs,#ec008c,issues
+Land,#ec008c,issues
+Honourable Speaker,#ffd138,government
+Mandela,#666666,yellow
+Nkandla,#489a1e,zuma
+ANC,#145d04,ANC
+Cope,#ffca08,Cope
+DA,#3eb1cc,DA
+EFF,#990002,EFF
+Point of Order,#ffd138,government
+Police,#ffd138,government
+Racism,#ec008c,issues
+Rand,#ffd138,government
+Resign,#ec008c,issues
+SABC,#ffd138,government
+ZumaMustFall,#489a1e,zuma
+Zupta,#489a1e,zuma
