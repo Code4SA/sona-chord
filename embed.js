@@ -3,14 +3,11 @@ if (window.innerWidth < 768) {
 } else {
     var heatSwitch = "";
 }
-
-var pathArray = window.location.pathname.split( '/' );
-var newPathname = "";
-for (i = 0; i < pathArray.length-1; i++) {
-  newPathname += "/";
-  newPathname += pathArray[i];
+if (document.location.hostname == "localhost") {
+    var baseurl = "";
+} else {
+    var baseurl = "https://static.code4sa.org/sona-chord/";
 }
-var baseurl = document.location.origin + "/" + newPathname + "/" ;
 
 document.write('<script type="text/javascript" src="' + baseurl + 'pym.js"></script>')
 document.write(" <script>var pymParent = new pym.Parent('tweetCircle', '" + baseurl + heatSwitch + "index.html', {});</script>")
