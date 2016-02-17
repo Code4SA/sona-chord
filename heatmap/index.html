@@ -4,11 +4,11 @@
       svg *::selection {
          background : transparent;
       }
-     
+
       svg *::-moz-selection {
          background:transparent;
-      } 
-     
+      }
+
       svg *::-webkit-selection {
          background:transparent;
       }
@@ -21,17 +21,17 @@
 
       rect.cell-border {
         stroke: #eee;
-        stroke-width:0px;   
+        stroke-width:0px;
       }
 
       rect.cell-selected {
         stroke: rgb(51,102,153);
-        stroke-width:0px;   
+        stroke-width:0px;
       }
 
       rect.cell-hover {
         stroke: #F00;
-        stroke-width:0.3px;   
+        stroke-width:0.3px;
       }
 
       text.mono {
@@ -81,8 +81,9 @@
 <div id="tooltip" class="hidden">
         <p><span id="value"></p>
 </div>
+<script src="../pym.js" charset="utf-8"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<div id="chart" style='overflow:auto; width:300px; height:500px;'></div>
+<div id="chart" style='overflow:auto; width:300px; height:400px;'></div>
 
 <script type="text/javascript">
 var margin = { top: 100, right: 0, bottom: 50, left: 100 },
@@ -96,12 +97,15 @@ var margin = { top: 100, right: 0, bottom: 50, left: 100 },
   colorBuckets = 11,
   colors = ['#ffffe5','#f7fcb9','#d9f0a3','#addd8e','#78c679','#41ab5d','#238443','#006837','#004529'];
   hcrow = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], // change to gene name or probe id
-  hccol = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], // change to gene name or probe id
+  hccol = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], // change to gene name or probe id
   rowLabel = ['@enca','@ewnreporter','@our_da','@debora_patta','@econfreedomza','@mmusimaimane', '@mapsmaponyane','@iamsivn','@ann7tv','@julius_s_malema','@iol','@barry_roux','@nandossa','@presidencyza','@news24','@timeslive','@chestermissing', '@sizwedhlomo','@parliamentofrsa', '@diannehawker']
 // change to gene name or probe id
   colLabel = ['ANC','Cope','DA','Economy','EFF','Finance','Jobs','Mandela','Police','Pt of order','Rand','Resign','Speaker','ZumaMustFall','Zupta'
 ]; // change to contrast name
 
+var pymChild = new pym.Child({ renderCallback: drawHeatmap });
+var drawn = false;
+function drawHeatmap() {
 d3.csv("data.csv",
 function(d) {
   return {
@@ -111,10 +115,13 @@ function(d) {
   };
 },
 function(error, data) {
+if (drawn) { return; }
+else {drawn = true;
+console.log("draw");
   var colorScale = d3.scale.quantile()
       .domain([0,10,25,50,200,500,1000,2000,3000,4000])
       .range(colors);
-  
+
   var svg = d3.select("#chart").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
@@ -133,7 +140,7 @@ function(error, data) {
       .attr("y", function (d, i) { return hcrow.indexOf(i+1) * cellSize; })
       .style("text-anchor", "end")
       .attr("transform", "translate(-6," + cellSize / 1.5 + ")")
-      .attr("class", function (d,i) { return "rowLabel mono r"+i;} ) 
+      .attr("class", function (d,i) { return "rowLabel mono r"+i;} )
       .on("mouseover", function(d) {d3.select(this).classed("text-hover",true);})
       .on("mouseout" , function(d) {d3.select(this).classed("text-hover",false);})
       .on("click", function(d,i) {rowSortOrder=!rowSortOrder; sortbylabel("r",i,rowSortOrder);d3.select("#order").property("selectedIndex", 4).node().focus();;})
@@ -180,14 +187,14 @@ function(error, data) {
       .enter().append("g")
       .attr("class", "legend");
 
- 
+
   legend.append("rect")
     .attr("x", function(d, i) { return legendElementWidth * i; })
     .attr("y", height+(cellSize*2))
     .attr("width", legendElementWidth)
     .attr("height", cellSize)
     .style("fill", function(d, i) { return colors[i]; });
- 
+
   legend.append("text")
     .attr("class", "mono")
     .text(function(d) { return d; })
@@ -201,7 +208,7 @@ function(error, data) {
        var t = svg.transition().duration(500);
        var mentions=[];
        var sorted; // sorted is zero-based index
-       d3.selectAll(".c"+rORc+i) 
+       d3.selectAll(".c"+rORc+i)
          .filter(function(ce){
             mentions.push(ce.value);
           })
@@ -250,7 +257,7 @@ function(error, data) {
       })
       .on("mousemove", function() {
          var s = sa.select("rect.selection");
-      
+
          if(!s.empty()) {
              var p = d3.mouse(this),
                  d = {
@@ -264,34 +271,34 @@ function(error, data) {
                      y : p[1] - d.y
                  }
              ;
-      
+
              if(move.x < 1 || (move.x*2<d.width)) {
                  d.x = p[0];
                  d.width -= move.x;
              } else {
-                 d.width = move.x;       
+                 d.width = move.x;
              }
-      
+
              if(move.y < 1 || (move.y*2<d.height)) {
                  d.y = p[1];
                  d.height -= move.y;
              } else {
-                 d.height = move.y;       
+                 d.height = move.y;
              }
              s.attr(d);
-      
+
                  // deselect all temporary selected state objects
              d3.selectAll('.cell-selection.cell-selected').classed("cell-selected", false);
              d3.selectAll(".text-selection.text-selected").classed("text-selected",false);
 
              d3.selectAll('.cell').filter(function(cell_d, i) {
                  if(
-                     !d3.select(this).classed("cell-selected") && 
+                     !d3.select(this).classed("cell-selected") &&
                          // inner circle inside selection frame
-                     (this.x.baseVal.value)+cellSize >= d.x && (this.x.baseVal.value)<=d.x+d.width && 
+                     (this.x.baseVal.value)+cellSize >= d.x && (this.x.baseVal.value)<=d.x+d.width &&
                      (this.y.baseVal.value)+cellSize >= d.y && (this.y.baseVal.value)<=d.y+d.height
                  ) {
-      
+
                      d3.select(this)
                      .classed("cell-selection", true)
                      .classed("cell-selected", true);
@@ -310,7 +317,7 @@ function(error, data) {
       .on("mouseup", function() {
             // remove selection frame
          sa.selectAll("rect.selection").remove();
-      
+
              // remove temporary selection marker class
          d3.selectAll('.cell-selection').classed("cell-selection", false);
          d3.selectAll(".text-selection").classed("text-selection",false);
@@ -326,5 +333,7 @@ function(error, data) {
          }
       })
       ;
-});
+                                                                                        }});
+                                                                                        }
+
 </script>
