@@ -37,7 +37,7 @@
       text.mono {
         font-size: 8pt;
         font-family: Verdana	;
-        fill: #aaa;
+        color: black;
       }
 
       text.text-selected {
@@ -75,6 +75,8 @@
         font-size: 12px;
         line-height: 20px;
       }
+      body {font-family: "Verdana",Arial;}
+
     </style>
 
 </head>
@@ -83,6 +85,7 @@
 </div>
 <script src="../pym.js" charset="utf-8"></script>
 <script src="../d3.v3.min.js"></script>
+<div class="intro">We've combined top conversation topics and top Twitter users. The darker the square the more the biggest influencers and the most popular topics were mentioned together. Click on any user or topic to sort.</div>
 <div id="chart" style='overflow:auto; width:300px; height:400px;'></div>
 
 <script type="text/javascript">
@@ -119,7 +122,7 @@ if (drawn) { return; }
 else {drawn = true;
 console.log("draw");
   var colorScale = d3.scale.quantile()
-      .domain([0,10,25,50,200,500,1000,2000,3000,4000])
+      .domain([0,10,25,50,100,200,500,1000,2000,4500])
       .range(colors);
 
   var svg = d3.select("#chart").append("svg")
@@ -183,7 +186,7 @@ console.log("draw");
         })*/
 
   var legend = svg.selectAll(".legend")
-      .data([0,10,25,50,100,200,500,1000,2000,4500])
+      .data([0,,25,,100,,500,,,4500])
       .enter().append("g")
       .attr("class", "legend");
 
